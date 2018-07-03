@@ -15,3 +15,4 @@ Route::get('/', 'PostsController@index');
 Route::get('/post/create', 'PostsController@create');
 Route::POST('/store/post', 'PostsController@store');
 Route::get('/post/{post}', 'PostsController@show');
+Route::POST('post/{post}/comments', 'commentsController@store');
