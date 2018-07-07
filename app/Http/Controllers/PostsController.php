@@ -12,10 +12,17 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct()
+     {
+       $this->middleware('auth')->except(['index','show']);
+     }
+
+
     public function index()
     {
       $posts = posts::all();
-      
+
         return view('index')->with(compact('posts'));
     }
 
@@ -54,6 +61,7 @@ class PostsController extends Controller
         $post->title = $request->input('title');
         $post->manchet = $request->input('manchet');
         $post->body = $request->input('body');
+        $post->user_id = auth()->id();
         $post->save();
         return redirect('/');
     }
